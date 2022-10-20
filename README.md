@@ -6,8 +6,9 @@
 - (A, D) Move left and right
 
 #Third Parts Assets
-- [https://www.kenney.nl/assets/tiny-dungeon](Kenny's Tiny Dungeon Assets Pack), Licensed under [https://creativecommons.org/publicdomain/zero/1.0/](CC0 1.0 Universal)
-- [https://www.kenney.nl/assets/platformer-pack-redux](Platformer Pack Redux), Licensed under [https://creativecommons.org/publicdomain/zero/1.0/](CC0 1.0 Universal)
+- [https://kenney.nl/assets/platformer-art-pixel-redux](Kenny's 
+Platformer Art: Pixel Redux), Licensed under [https://creativecommons.org/publicdomain/zero/1.0/](CC0 1.0 Universal)
+- [https://kenney.nl/assets/background-elements-redux](Background Elements Redux), Licensed under [https://creativecommons.org/publicdomain/zero/1.0/](CC0 1.0 Universal)
 
 ## Project Report 
 
