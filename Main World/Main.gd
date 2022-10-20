@@ -21,11 +21,14 @@ func _process(delta):
 		if prePlayerMaxHeight >= maxPlayerHeight +500:
 			for x in 10:
 				spawnPlatforms()
+				spawnCoins()
 			prePlayerMaxHeight = maxPlayerHeight
 		$Camera2D.position.y = maxPlayerHeight - 200
 		
 		$BackGround/BackgroundEmpty.position.y = maxPlayerHeight + 100
 		$deathColliders.position.y = maxPlayerHeight + 198
+		
+		$HUD/CanvasLayer/Label.text = ":" + str($Player.coins)
 	
 
 func spawnPlatforms():
@@ -33,6 +36,12 @@ func spawnPlatforms():
 	var instancedPlatform = newPlatform.instance()
 	instancedPlatform.position = Vector2(randi() % 480 + 120, rand_range($Player.position.y - 500 ,$Player.position.y -1000 ))
 	add_child(instancedPlatform)
+
+func spawnCoins():
+	var newCoin = load("res://Coin/coin.tscn")
+	var instancedCoin = newCoin.instance()
+	instancedCoin.position = Vector2(randi() % 480 + 120, rand_range($Player.position.y - 500 ,$Player.position.y -1000 ))
+	add_child(instancedCoin)
 
 
 func _on_DeathCollider_body_entered(body):

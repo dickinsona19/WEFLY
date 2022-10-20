@@ -2,7 +2,8 @@ extends RigidBody2D
 
 
 var jumpPositon = Vector2(0, -3)
-
+var coins = 0
+var maxSpeed = (coins+1) *.05
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,14 +18,14 @@ func _process(delta):
 	if Input.is_action_pressed("move_right"):
 		apply_central_impulse(Vector2(15,0))
 		
-	if linear_velocity.x > 250:
-		linear_velocity.x = 250
-	if linear_velocity.x < -250:
-		linear_velocity.x = -250
+	if linear_velocity.x > 250 + (250*maxSpeed):
+		linear_velocity.x = 250 + (250*maxSpeed)
+	if linear_velocity.x < -250 +(-250*maxSpeed):
+		linear_velocity.x = -250 + (-250*maxSpeed)
 
 
 func _on_Player_body_entered(body):
-	apply_central_impulse(Vector2(0,-550))
+	apply_central_impulse(Vector2(0,-550 + (-250*maxSpeed)))
 	$AnimatedSprite.play("jump")
 	$jumpTimer.start()
 
