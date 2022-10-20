@@ -63,3 +63,5 @@ func endGame(body):
 	if body.name == "Player":
 		$Player.visible = false
 		gameRunning = false
+		$HUD/CanvasLayer/MainMenu.visible = true
+		$HUD/CanvasLayer/Replay.visible = true
