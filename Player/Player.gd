@@ -25,9 +25,7 @@ func _process(delta):
 
 
 func _on_Player_body_entered(body):
-	apply_central_impulse(Vector2(0,-550 + (-250*maxSpeed)))
-	$AnimatedSprite.play("jump")
-	$jumpTimer.start()
+	applyJump()
 
 
 func _on_jumpTimer_timeout():
@@ -36,3 +34,8 @@ func _on_jumpTimer_timeout():
 func _integrate_forces(state):
 	rotation_degrees = 0
 	$jumpCollision.rotation_degrees = 0
+	
+func applyJump():
+	apply_central_impulse(Vector2(0,-550 + (-250*maxSpeed)))
+	$AnimatedSprite.play("jump")
+	$jumpTimer.start()

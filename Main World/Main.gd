@@ -12,6 +12,7 @@ func _ready():
 	prePlayerMaxHeight = $Player.position.y
 	for x in 10:
 		spawnPlatforms()
+		spawnCoins()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -22,6 +23,7 @@ func _process(delta):
 			for x in 10:
 				spawnPlatforms()
 				spawnCoins()
+			spawnEnemies()
 			prePlayerMaxHeight = maxPlayerHeight
 		$Camera2D.position.y = maxPlayerHeight - 200
 		
@@ -42,6 +44,12 @@ func spawnCoins():
 	var instancedCoin = newCoin.instance()
 	instancedCoin.position = Vector2(randi() % 480 + 120, rand_range($Player.position.y - 500 ,$Player.position.y -1000 ))
 	add_child(instancedCoin)
+
+func spawnEnemies():
+	var newEnemy = load("res://Enemy/Enemy.tscn")
+	var instancedEnemy = newEnemy.instance()
+	instancedEnemy.position = Vector2(randi() % 480 + 120, rand_range($Player.position.y - 500 ,$Player.position.y -1000 ))
+	add_child(instancedEnemy)
 
 
 func _on_DeathCollider_body_entered(body):

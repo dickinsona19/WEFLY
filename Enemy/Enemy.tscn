@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Enemy/flyDead.png" type="Texture" id=1]
+[ext_resource path="res://Enemy/flyFly2.png" type="Texture" id=2]
+[ext_resource path="res://Enemy/Enemy.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 36, 15.25 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "dead",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 36, 5.25 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 30, 2.5 )
+
+[node name="Enemy" type="KinematicBody2D"]
+z_index = 1
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1 )
+rotation = 3.14159
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "idle"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="playerHitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerHitBox"]
+position = Vector2( 0, 9.25 )
+rotation = 3.14159
+shape = SubResource( 3 )
+
+[node name="EnemyHitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitBox"]
+position = Vector2( -3, -13.5 )
+shape = SubResource( 4 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="playerHitBox" to="." method="_on_playerHitBox_body_entered"]
+[connection signal="body_entered" from="EnemyHitBox" to="." method="_on_EnemyHitBox_body_entered"]
